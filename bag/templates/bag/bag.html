@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% load bag_tools %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -25,6 +24,7 @@
             <div class="col">
                 {% if bag_items %}
                     <div class="table-responsive rounded d-none d-md-block">
+                        {{ bag_items }}
                     </div>
                 {% else %}
                     <p class="lead mb-5">Your bag is empty.</p>
