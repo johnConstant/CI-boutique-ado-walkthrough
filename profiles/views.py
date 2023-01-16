@@ -1,13 +1,18 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from checkout.models import Order
 from .models import UserProfile
 from .forms import UserProfileForm
 
 
+@login_required
 def profile(request):
     """ Display the user's profile. """
+    if not request.user.is_authenticated:
+        messages.error(request, 'Sorry, you must be logged in to access this page.')
+        return redirect(reverse('home'))
 
     profile = get_object_or_404(UserProfile, user=request.user)
 
